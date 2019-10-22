@@ -403,6 +403,8 @@ EOF
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 SMART TIP: Check Portainer Now! View the Traefik Logs!
 
+Portainer  : https://${cname}.${domain}
+
 Highest REASON
 REASON ! - LetsEncrypt : Planned Maintenance In Progress or service down
 REASON ! - LE HitLimit : check https://crt.sh/?q=${domain}
