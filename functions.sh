@@ -403,16 +403,24 @@ EOF
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 SMART TIP: Check Portainer Now! View the Traefik Logs!
 
-REASON 1 - CloudFlare: portainer is not set in the CNAME or A Records
-REASON 2 - DuckDNS   : Forgot to create a portainer or * - A Record
-REASON 3 - Firewall  : Everything is blocked
-REASON 4 - DelayValue: Set too low; CF users reported using 90 to work
-REASON 5 - OverUse   : Deployed too much; hit LetsEncrypt Weekly Limit
-REASON 6 - User      : PG Locally; Route is not enable to reach server
-REASON 7 - User      : Bad values input or failed to read the wiki
-REASON 8 - User      : Forgot to point DOMAIN to CORRECT IP ADDRESS
+Highest REASON
+REASON ! - LetsEncrypt : Planned Maintenance In Progress or service down
+REASON ! - LE HitLimit : check https://crt.sh/?q=${domain}
 
-There are multiple reason for failure! Visit the forums, wiki, or discord!
+
+REASON 1 - CloudFlare : portainer is not set in the CNAME or A Records
+REASON 2 - DuckDNS    : Forgot to create a portainer or * - A Record
+REASON 3 - Firewall   : Everything is blocked
+REASON 4 - DelayValue : Set too low; CF users reported using 90 to work
+REASON 5 - OverUse    : Deployed too much; hit LetsEncrypt Weekly Limit
+REASON 6 - User       : PTS Locally; Route is not enable to reach server
+REASON 7 - User       : Bad values input or failed to read the wiki
+REASON 8 - User       : Forgot to point DOMAIN to CORRECT IP ADDRESS
+
+REASON 9 - User       : running nginx or apache http server
+
+There are multiple reason for failure! Visit wiki or discord!
+
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 EOF
@@ -461,6 +469,7 @@ EOF
   sed -i -e "/authclient/d" /var/plexguide/container.running
   sed -i -e "/dockergc/d" /var/plexguide/container.running
   sed -i -e "/oauth/d" /var/plexguide/container.running
+ 
   sed -i -e "/portainer/d" /var/plexguide/container.running # Already Rebuilt
 
   count=$(wc -l </var/plexguide/container.running)
