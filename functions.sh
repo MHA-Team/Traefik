@@ -317,6 +317,21 @@ EOF
 postdeploy() {
   tempseconds=$(cat /var/plexguide/server.delaycheck)
   delseconds=$((${tempseconds} + 10))
+  tee <<-EOF
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🚀 Standby for repulling Core Apps
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+EOF
+ansible-playbook /opt/traefik/repulls/clone.yml
+sleep 2
+  tee <<-EOF
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🚀 ✅ PASSED - repull Core Apps 
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+EOF
+ sleep 3
 
   tee <<-EOF
 
@@ -405,21 +420,15 @@ SMART TIP: Check Portainer Now! View the Traefik Logs!
 
 Portainer  : https://${cname}.${domain}
 
-Highest REASON
-REASON ! - LetsEncrypt : Planned Maintenance In Progress or service down
-REASON ! - LE HitLimit : check https://crt.sh/?q=${domain}
-
-
-REASON 1 - CloudFlare : portainer is not set in the CNAME or A Records
-REASON 2 - DuckDNS    : Forgot to create a portainer or * - A Record
-REASON 3 - Firewall   : Everything is blocked
-REASON 4 - DelayValue : Set too low; CF users reported using 90 to work
-REASON 5 - OverUse    : Deployed too much; hit LetsEncrypt Weekly Limit
-REASON 6 - User       : PTS Locally; Route is not enable to reach server
-REASON 7 - User       : Bad values input or failed to read the wiki
-REASON 8 - User       : Forgot to point DOMAIN to CORRECT IP ADDRESS
-
-REASON 9 - User       : running nginx or apache http server
+REASON 1 - CloudFlare  : portainer is not set in the CNAME or A Records
+REASON 2 - DelayValue  : Set too low - CF users reported using 90 to work
+REASON 3 - DuckDNS     : Forgot to create a portainer or * - A Record
+REASON 4 - Firewall    : Everything is blocked
+REASON 5 - LetsEncrypt : LE HitLimit : check https://crt.sh/?q=domain.tld
+REASON 6 - LetsEncrypt : Planned Maintenance In Progress or service down (https://letsencrypt.status.io)
+REASON 7 - User        : PTS Locally; Route is not enable to reach server
+REASON 8 - User        : Bad values input or failed to read the wiki
+REASON 9 - User        : Forgot to point DOMAIN to CORRECT IP ADDRESS
 
 There are multiple reason for failure! Visit wiki or discord!
 
