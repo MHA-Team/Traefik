@@ -424,7 +424,7 @@ REASON 1 - CloudFlare  : portainer is not set in the CNAME or A Records
 REASON 2 - DelayValue  : Set too low - CF users reported using 90 to work
 REASON 3 - DuckDNS     : Forgot to create a portainer or * - A Record
 REASON 4 - Firewall    : Everything is blocked
-REASON 5 - LetsEncrypt : LE HitLimit : check https://crt.sh/?q=domain.tld
+REASON 5 - LetsEncrypt : LE HitLimit : check https://crt.sh/?q=${domain}
 REASON 6 - LetsEncrypt : Planned Maintenance In Progress or service down (https://letsencrypt.status.io)
 REASON 7 - User        : PTS Locally; Route is not enable to reach server
 REASON 8 - User        : Bad values input or failed to read the wiki
