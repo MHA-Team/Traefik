@@ -364,6 +364,11 @@ EOF
 
 EOF
 
+ 
+  docker stop portainer
+  sleep 2
+  docker rm portainer
+  sleep 2
   ansible-playbook /opt/coreapps/apps/portainer.yml
 
   delseconds=10
@@ -400,7 +405,7 @@ EOF
 
   cname="portainer"
   if [[ -f "/var/plexguide/portainer.cname" ]]; then
-    cname=$(cat "/var/plexguide/portainer.cname")
+    cname=$(cat /var/plexguide/portainer.cname)
   fi
 
   touch /opt/appdata/plexguide/traefikportainer.check
@@ -575,7 +580,7 @@ traefikbuilder() {
 
   echo "
 
-- name: 'Setting PG ENV'
+- name: 'Setting Traefik ENV'
   set_fact:
     pg_env:
       PUID: '1000'
