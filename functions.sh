@@ -363,12 +363,7 @@ EOF
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 EOF
-
  
-  docker stop portainer
-  sleep 2
-  docker rm portainer
-  sleep 2
   ansible-playbook /opt/coreapps/apps/portainer.yml
 
   delseconds=10
